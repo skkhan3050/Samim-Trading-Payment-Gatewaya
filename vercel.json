@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/strategies", "destination": "/samin-pied.vercel.app/strategies.html" },
+    { "source": "/analysis", "destination": "/samin-pied.vercel.app/market-analysis.html" },
+    { "source": "/market-analysis", "destination": "/samin-pied.vercel.app/market-analysis.html" },
+    { "source": "/education", "destination": "/samin-pied.vercel.app/education.html" },
+    { "source": "/pricing", "destination": "/samin-pied.vercel.app/pricing.html" },
+    { "source": "/platform", "destination": "/samin-pied.vercel.app/platform.html" },
+    { "source": "/why-platform", "destination": "/samin-pied.vercel.app/platform.html" },
+    { "source": "/community", "destination": "/samin-pied.vercel.app/community.html" },
+    { "source": "/contact", "destination": "/samin-pied.vercel.app/contact.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/assets/(.*)", "destination": "/samin-pied.vercel.app/assets/$1" },
+    { "source": "/", "destination": "/samin-pied.vercel.app/index.html" }
+  ]
+}

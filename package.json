@@ -1,0 +1,13 @@
+{
+  "name": "samin-pied-vercel-app",
+  "version": "1.0.0",
+  "description": "Local server for TRADELAB web application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

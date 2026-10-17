@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up & Login | Golds Blue - TRADELAB</title>
+    <meta
+      name="description"
+      content="Create your TRADELAB account or log in to access battle-tested crypto strategies, institutional analytics, and real-time order flow."
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --color-bg-page: #FBFBFC;
+        --color-card-bg: #FFFFFF;
+        --color-text-title: #0F172A;
+        --color-text-sub: #64748B;
+        --color-text-label: #1E293B;
+        --color-border-input: #D1D5DB;
+        --color-border-focus: #0F172A;
+        --color-box-bg: #F8FAFC;
+        --color-box-border: #E2E8F0;
+        --color-btn-dark: #000000;
+        --color-btn-dark-hover: #1E293B;
+        --color-google-btn-border: #E2E8F0;
+        --color-link-blue: #4F46E5;
+        --color-link-blue-hover: #4338CA;
+        --color-valid-green: #059669;
+        --color-invalid-red: #DC2626;
+        --font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      body {
+        font-family: var(--font-family);
+        background-color: var(--color-bg-page);
+        color: var(--color-text-title);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 16px;
+        position: relative;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Subtle floating back to home button */
+      .back-to-home-link {
+        position: absolute;
+        top: 16px;
+        left: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 12px;
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 9999px;
+        color: #475569;
+        font-size: 12.5px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        transition: all 0.2s ease;
+        z-index: 10;
+      }
+
+      .back-to-home-link:hover {
+        color: var(--color-link-blue);
+        border-color: #CBD5E1;
+        transform: translateX(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Centered Auth Card - Compact & Elegant */
+      .auth-card-wrapper {
+        width: 100%;
+        max-width: 385px;
+        background: var(--color-card-bg);
+        border-radius: 18px;
+        padding: 26px 28px 22px;
+        box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.06), 0 20px 25px -5px rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        animation: cardFadeIn 0.3s ease-out;
+      }
+
+      @keyframes cardFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px) scale(0.99);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* Website Logo Header Badge - Centered Position */
+      .brand-badge-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 0 auto 12px auto;
+        text-align: center;
+      }
+
+      .brand-circle-logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #EEF2FF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+        box-shadow: 0 3px 8px rgba(79, 70, 229, 0.12);
+        text-decoration: none;
+        transition: transform 0.2s ease;
+      }
+
+      .brand-circle-logo:hover {
+        transform: scale(1.06);
+      }
+
+      .brand-logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .brand-name-text {
+        font-size: 13px;
+        font-weight: 700;
+        color: #0F172A;
+        letter-spacing: -0.01em;
+      }
+
+      .brand-name-tag {
+        font-size: 10px;
+        font-weight: 600;
+        color: #059669;
+        background: #ECFDF5;
+        border: 1px solid #A7F3D0;
+        border-radius: 999px;
+        padding: 1px 6px;
+        margin-left: 3px;
+      }
+
+      /* Title & Subtitle - Centered Position */
+      .auth-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--color-text-title);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin-bottom: 2px;
+        text-align: center;
+      }
+
+      .auth-subtitle {
+        font-size: 13.5px;
+        color: var(--color-text-sub);
+        line-height: 1.4;
+        margin-bottom: 16px;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      /* Form Fields */
+      .auth-form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .field-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 11px;
+      }
+
+      .field-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-text-label);
+        margin-bottom: 4px;
+        text-align: left;
+      }
+
+      .field-label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 4px;
+      }
+
+      .show-hide-btn {
+        background: none;
+        border: none;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #64748B;
+        cursor: pointer;
+        padding: 0;
+        transition: color 0.15s ease;
+      }
+
+      .show-hide-btn:hover {
+        color: var(--color-text-title);
+      }
+
+      .field-input {
+        width: 100%;
+        height: 40px;
+        padding: 0 13px;
+        font-family: inherit;
+        font-size: 14px;
+        color: var(--color-text-title);
+        background-color: #FFFFFF;
+        border: 1.5px solid var(--color-border-input);
+        border-radius: 9px;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .field-input::placeholder {
+        color: #9CA3AF;
+        font-size: 14px;
+      }
+
+      .field-input:focus {
+        border-color: var(--color-border-focus);
+        box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+      }
+
+
+
+      /* Buttons */
+      .btn-primary-dark {
+        width: 100%;
+        height: 42px;
+        background-color: var(--color-btn-dark);
+        color: #FFFFFF;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        border-radius: 9px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 9px;
+        transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      }
+
+      .btn-primary-dark:hover {
+        background-color: var(--color-btn-dark-hover);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .btn-primary-dark:active {
+        transform: translateY(0);
+      }
+
+      .btn-primary-dark:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Google Sign Up / Login Button (Exact from Image) */
+      .btn-google {
+        width: 100%;
+        height: 42px;
+        background-color: #FFFFFF;
+        color: #1F2937;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        border: 1.5px solid var(--color-google-btn-border);
+        border-radius: 9px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn-google:hover {
+        background-color: #F9FAFB;
+        border-color: #CBD5E1;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      }
+
+      .btn-google:active {
+        background-color: #F1F5F9;
+      }
+
+      /* Bottom Switch (Sign up <-> Log in) */
+      .bottom-switch-row {
+        text-align: center;
+        margin-top: 14px;
+        font-size: 13px;
+        color: #64748B;
+      }
+
+      .bottom-switch-link {
+        color: var(--color-link-blue);
+        font-weight: 600;
+        text-decoration: none;
+        margin-left: 4px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        transition: color 0.15s ease, text-decoration 0.15s ease;
+      }
+
+      .bottom-switch-link:hover {
+        color: var(--color-link-blue-hover);
+        text-decoration: underline;
+      }
+
+      /* Quick Demo Auto-Fill helper */
+      .demo-helper-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .demo-helper-btn {
+        background: #F1F5F9;
+        border: 1px dashed #CBD5E1;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #64748B;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .demo-helper-btn:hover {
+        background: #E2E8F0;
+        color: #334155;
+        border-color: #94A3B8;
+      }
+
+      /* Google Account Selector Modal Simulation */
+      .google-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 16px;
+      }
+
+      .google-modal-backdrop.open {
+        display: flex;
+      }
+
+      .google-modal-card {
+        background: #FFFFFF;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        padding: 24px;
+        animation: modalPop 0.2s ease-out;
+      }
+
+      @keyframes modalPop {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      .google-modal-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #E2E8F0;
+      }
+
+      .google-account-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 0.15s ease;
+      }
+
+      .google-account-item:hover {
+        background: #F8FAFC;
+        border-color: #E2E8F0;
+      }
+
+      .google-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #4285F4;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 17px;
+      }
+
+      /* Notification Toast */
+      .toast-msg {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: #0F172A;
+        color: #FFFFFF;
+        padding: 14px 20px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 10000;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+      }
+
+      .toast-msg.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .toast-msg.success {
+        border-left: 4px solid #10B981;
+      }
+
+      .toast-msg.info {
+        border-left: 4px solid #4F46E5;
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 480px) {
+        body {
+          padding: 24px 14px;
+        }
+
+        .back-to-home-link {
+          top: 14px;
+          left: 14px;
+          padding: 6px 12px;
+          font-size: 12.5px;
+        }
+
+        .auth-card-wrapper {
+          padding: 34px 22px 30px;
+          border-radius: 18px;
+          margin-top: 40px;
+        }
+
+        .auth-title {
+          font-size: 27px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Discreet Home Navigation Link -->
+    <a href="/" class="back-to-home-link" title="Return to TRADELAB Homepage">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Home
+    </a>
+
+    <!-- Center Card - EXACT REPLICA of Reference Image -->
+    <main class="auth-card-wrapper">
+      <!-- Website Logo Header with Official Website Logo -->
+      <div class="brand-badge-row">
+        <a href="/" class="brand-circle-logo" title="Golds Blue - TRADELAB Home">
+          <img
+            src="/assets/golds-blue-logo.png"
+            alt="Golds Blue Logo"
+            class="brand-logo-img"
+          />
+        </a>
+        <div>
+          <span class="brand-name-text">Golds Blue</span>
+          <span class="brand-name-tag">Signal</span>
+        </div>
+      </div>
+
+      <!-- Left-Aligned Title & Subtitle -->
+      <h1 class="auth-title" id="auth-title">Sign up</h1>
+      <p class="auth-subtitle" id="auth-subtitle">Start your 30-day free trial.</p>
+
+      <!-- Form -->
+      <form class="auth-form" id="auth-form" autocomplete="on">
+        <!-- Email Field -->
+        <div class="field-group">
+          <label for="auth-email" class="field-label">Email*</label>
+          <input
+            type="email"
+            id="auth-email"
+            class="field-input"
+            placeholder="Enter your email"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="field-group">
+          <div class="field-label-row">
+            <label for="auth-password" class="field-label" style="margin-bottom: 0;">Password*</label>
+            <button
+              type="button"
+              class="show-hide-btn"
+              id="password-toggle-btn"
+              aria-label="Toggle password visibility"
+            >
+              Show
+            </button>
+          </div>
+          <input
+            type="password"
+            id="auth-password"
+            class="field-input"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+
+        <!-- Primary Action Button ("Get started") -->
+        <button type="submit" class="btn-primary-dark" id="btn-primary-action">
+          <span id="btn-action-text">Get started</span>
+        </button>
+
+        <!-- Google Sign Up / Sign In Button (Exact from Image) -->
+        <button type="button" class="btn-google" id="btn-google-action">
+          <!-- Official Google Multi-color G Icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <span id="btn-google-text">Sign up with Google</span>
+        </button>
+      </form>
+
+      <!-- Bottom Switch Link: Already have an account? Log in -->
+      <div class="bottom-switch-row">
+        <span id="bottom-prompt-text">Already have an account?</span>
+        <button type="button" class="bottom-switch-link" id="bottom-switch-btn">Log in</button>
+      </div>
+    </main>
+
+    <!-- Google One-Tap / OAuth Modal Simulation -->
+    <div class="google-modal-backdrop" id="google-modal" role="dialog" aria-modal="true" aria-label="Sign in with Google">
+      <div class="google-modal-card">
+        <div class="google-modal-header">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <div>
+            <div style="font-weight: 700; font-size: 15px; color: #1E293B;">Sign in with Google</div>
+            <div style="font-size: 12.5px; color: #64748B;">Choose an account to continue to TRADELAB</div>
+          </div>
+        </div>
+
+        <div class="google-account-item" id="google-profile-option">
+          <div class="google-avatar">T</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px; color: #0F172A;">Trader Pro</div>
+            <div style="font-size: 12.5px; color: #64748B;">trader.crypto@gmail.com</div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 18px;">
+          <button type="button" id="google-cancel-btn" style="background: none; border: none; font-size: 13.5px; font-weight: 600; color: #64748B; cursor: pointer; padding: 6px 12px;">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Toast -->
+    <div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+
+    <!-- Real-time Logic & Dynamic Interactivity -->
+    <script>
+      (function () {
+        // Elements
+        const titleEl = document.getElementById('auth-title');
+        const subtitleEl = document.getElementById('auth-subtitle');
+        const formEl = document.getElementById('auth-form');
+        const emailInput = document.getElementById('auth-email');
+        const passwordInput = document.getElementById('auth-password');
+        const toggleBtn = document.getElementById('password-toggle-btn');
+        const primaryBtn = document.getElementById('btn-primary-action');
+        const primaryBtnText = document.getElementById('btn-action-text');
+        const googleBtn = document.getElementById('btn-google-action');
+        const googleBtnText = document.getElementById('btn-google-text');
+        const bottomPrompt = document.getElementById('bottom-prompt-text');
+        const bottomSwitchBtn = document.getElementById('bottom-switch-btn');
+        const toast = document.getElementById('toast-msg');
+
+        // Google modal elements
+        const googleModal = document.getElementById('google-modal');
+        const googleProfile = document.getElementById('google-profile-option');
+        const googleCancel = document.getElementById('google-cancel-btn');
+
+        // Current mode: 'signup' or 'login'
+        let currentMode = 'signup';
+        let isPasswordVisible = false;
+
+        // Toast Helper
+        function showToast(message, type = 'info') {
+          toast.textContent = message;
+          toast.className = 'toast-msg ' + type + ' show';
+          clearTimeout(window._toastTimer);
+          window._toastTimer = setTimeout(() => {
+            toast.className = 'toast-msg';
+          }, 3500);
+        }
+
+        // Toggle Password Show/Hide
+        toggleBtn.addEventListener('click', function () {
+          isPasswordVisible = !isPasswordVisible;
+          passwordInput.type = isPasswordVisible ? 'text' : 'password';
+          toggleBtn.textContent = isPasswordVisible ? 'Hide' : 'Show';
+        });
+
+        // Mode Switcher (Sign up <-> Log in)
+        function setMode(mode) {
+          currentMode = mode;
+          if (mode === 'signup') {
+            titleEl.textContent = 'Sign up';
+            subtitleEl.textContent = 'Start your 30-day free trial.';
+            primaryBtnText.textContent = 'Get started';
+            googleBtnText.textContent = 'Sign up with Google';
+            bottomPrompt.textContent = 'Already have an account?';
+            bottomSwitchBtn.textContent = 'Log in';
+          } else {
+            titleEl.textContent = 'Log in';
+            subtitleEl.textContent = 'Welcome back to your TRADELAB terminal.';
+            primaryBtnText.textContent = 'Log in';
+            googleBtnText.textContent = 'Log in with Google';
+            bottomPrompt.textContent = "Don't have an account?";
+            bottomSwitchBtn.textContent = 'Sign up';
+          }
+        }
+
+        bottomSwitchBtn.addEventListener('click', function () {
+          setMode(currentMode === 'signup' ? 'login' : 'signup');
+        });
+
+        // Check URL parameters (e.g. ?mode=login or ?mode=signup)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'login') {
+          setMode('login');
+        } else {
+          setMode('signup');
+        }
+
+        // Form Submit - Accepts any password the user wants!
+        formEl.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const email = emailInput.value.trim();
+          const pass = passwordInput.value;
+
+          if (!email || !pass) {
+            showToast('Please fill in both email and password.', 'info');
+            return;
+          }
+
+          primaryBtn.disabled = true;
+          primaryBtnText.textContent = currentMode === 'signup' ? 'Creating account...' : 'Authenticating...';
+
+          setTimeout(() => {
+            primaryBtnText.textContent = 'Success! Launching...';
+            primaryBtn.style.backgroundColor = '#059669';
+            showToast(
+              currentMode === 'signup'
+                ? 'Welcome to TRADELAB! Your 30-day trial is active.'
+                : 'Welcome back! Terminal access granted.',
+              'success'
+            );
+
+            setTimeout(() => {
+              window.location.href = '/strategies';
+            }, 1000);
+          }, 800);
+        });
+
+        // Google Sign In / Sign Up
+        googleBtn.addEventListener('click', function () {
+          googleModal.classList.add('open');
+        });
+
+        googleCancel.addEventListener('click', function () {
+          googleModal.classList.remove('open');
+        });
+
+        googleModal.addEventListener('click', function (e) {
+          if (e.target === googleModal) {
+            googleModal.classList.remove('open');
+          }
+        });
+
+        googleProfile.addEventListener('click', function () {
+          googleModal.classList.remove('open');
+          emailInput.value = 'trader.crypto@gmail.com';
+          passwordInput.value = 'GoogleAuth2026!';
+          validatePassword(passwordInput.value);
+
+          primaryBtn.disabled = true;
+          primaryBtnText.textContent = 'Google Authenticated!';
+          primaryBtn.style.backgroundColor = '#059669';
+
+          showToast('Google Account Verified: trader.crypto@gmail.com', 'success');
+
+          setTimeout(() => {
+            window.location.href = '/strategies';
+          }, 1100);
+        });
+      })();
+    </script>
+  </body>
+</html>
